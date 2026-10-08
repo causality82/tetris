@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101522" />
+    <title>TETRIS — 클래식 블록 퍼즐</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="TETRIS 홈">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span>TETRIS</span>
+        </a>
+        <div class="topbar-note"><span class="live-dot"></span> CLASSIC MODE</div>
+      </header>
+
+      <main class="game-layout">
+        <section class="play-section" aria-label="게임 영역">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">ARCADE / 001</p>
+              <h1>Stack the rhythm.</h1>
+            </div>
+            <div class="status-chip" id="status-chip"><span></span><strong>READY</strong></div>
+          </div>
+
+          <div class="board-frame">
+            <div class="board-ruler board-ruler-top" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span></div>
+            <div class="board-ruler board-ruler-left" aria-hidden="true"><span>01</span><span>05</span><span>10</span><span>15</span><span>20</span></div>
+            <div class="canvas-wrap">
+              <canvas id="game-board" width="300" height="600" aria-label="테트리스 게임판"></canvas>
+              <div id="screen-overlay" class="screen-overlay" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div class="mobile-controls" aria-label="화면 조작 버튼">
+            <button class="control-button control-secondary" data-control="left" aria-label="왼쪽 이동">←</button>
+            <button class="control-button control-secondary" data-control="down" aria-label="빠르게 내리기">↓</button>
+            <button class="control-button control-primary" data-control="rotate" aria-label="회전">↻</button>
+            <button class="control-button control-secondary" data-control="right" aria-label="오른쪽 이동">→</button>
+            <button class="control-button control-drop" data-control="drop" aria-label="즉시 떨어뜨리기">DROP</button>
+          </div>
+          <p class="mobile-hint">화면 버튼 또는 키보드로 플레이하세요</p>
+        </section>
+
+        <aside class="info-panel" aria-label="게임 정보">
+          <div class="info-topline">
+            <span>RUN STATUS</span>
+            <span class="mono" id="session-number">SESSION 001</span>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card stat-score">
+              <span class="stat-label">SCORE</span>
+              <strong id="score">000000</strong>
+              <small>이번 게임</small>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">BEST</span>
+              <strong id="best-score">000000</strong>
+              <small>최고 기록</small>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">LEVEL</span>
+              <strong id="level">01</strong>
+              <small>속도 단계</small>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">LINES</span>
+              <strong id="lines">000</strong>
+              <small>제거한 줄</small>
+            </div>
+          </div>
+
+          <div class="next-card panel-card">
+            <div class="card-heading"><span>NEXT BLOCK</span><span class="card-index">02</span></div>
+            <div class="preview-stage"><canvas id="next-piece" width="140" height="110" aria-label="다음 블록 미리보기"></canvas></div>
+            <p>다음 블록을 미리 보고<br />가장 좋은 자리를 준비하세요.</p>
+          </div>
+
+          <div class="controls-card panel-card">
+            <div class="card-heading"><span>CONTROLS</span><span class="card-index">03</span></div>
+            <div class="key-list">
+              <div><span>이동</span><span class="keys"><kbd>←</kbd><kbd>→</kbd></span></div>
+              <div><span>빠르게 내리기</span><kbd>↓</kbd></div>
+              <div><span>회전</span><kbd>↑</kbd></div>
+              <div><span>즉시 떨어뜨리기</span><kbd>SPACE</kbd></div>
+              <div><span>일시정지</span><kbd>P</kbd></div>
+            </div>
+          </div>
+
+          <button id="primary-action" class="action-button" type="button">게임 시작 <span>↗</span></button>
+          <p class="tip"><span>TIP</span> 한 줄보다 네 줄을 한 번에 지우면 더 큰 점수를 얻습니다.</p>
+        </aside>
+      </main>
+
+      <footer class="footer">
+        <span>DESIGNED FOR FOCUS</span>
+        <span>10 × 20 GRID / 7 PIECES / ENDLESS RUN</span>
+      </footer>
+    </div>
+  </body>
+</html>
